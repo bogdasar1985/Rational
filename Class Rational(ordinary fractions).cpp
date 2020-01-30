@@ -27,7 +27,7 @@ public:
 				denominator *= -1;
 				numenator *= -1;
 			}
-			if (denominator == 0)throw exception("ДЕЛЕНИЕ НА НОЛЬ!!!");
+			if (denominator == 0)throw exception();
 		}
 		catch(exception& ex)
 		{
@@ -83,7 +83,7 @@ Rational operator/(const Rational& r1, const Rational& r2)
 {
 	try 
 	{
-		if (r2.Numerator() == 0)throw exception("ДЕЛЕНИЕ НА НОЛЬ!!!");
+		if (r2.Numerator() == 0)throw exception();
 		Rational ret(r1.Numerator() * r2.Denominator(), r1.Denominator() * r2.Numerator());
 		return ret;
 	}
