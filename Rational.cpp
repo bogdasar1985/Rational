@@ -1,6 +1,4 @@
 ﻿#include "Rational.h"
-using namespace std;
-
 Rational::Rational()
 {
 	numenator = 0;
@@ -21,11 +19,11 @@ Rational::Rational(int num, int denom) //Конструктор должен д�
 			denominator *= -1;
 			numenator *= -1;
 		}
-		if (denominator == 0)throw exception();
+		if (denominator == 0)throw std::exception();
 	}
-	catch(exception& ex)
+	catch(std::exception& ex)
 	{
-		cout << ex.what() << endl;
+		std::cout << ex.what() << std::endl;
 		exit(-1);
 	}
 }
@@ -42,7 +40,7 @@ int Rational::Denominator() const  //Возвращает знаминатель
 
 int Rational::nod(int a, int b)	//Наибольший общий делитель
 {
-	int tmp = max(a, b);
+	int tmp = std::max(a, b);
 	while((a % tmp != 0) || (b % tmp != 0))
 	{
 		tmp--;
@@ -73,13 +71,13 @@ Rational operator/(const Rational& r1, const Rational& r2)
 {
 	try 
 	{
-		if (r2.Numerator() == 0)throw exception();
+		if (r2.Numerator() == 0)throw std::exception();
 		Rational ret(r1.Numerator() * r2.Denominator(), r1.Denominator() * r2.Numerator());
 		return ret;
 	}
-	catch(exception& ex)
+	catch(std::exception& ex)
 	{
-		cout << ex.what() << endl;
+		std::cout << ex.what() << std::endl;
 		exit(-1);
 	}
 	
@@ -127,13 +125,13 @@ Rational operator-(const Rational& r1, const Rational& r2)
 	return rat;
 }
 
-ostream& operator<<(ostream& stream, const Rational& rat)
+std::ostream& operator<<(std::ostream& stream, const Rational& rat)
 {
 	stream << rat.Numerator() << '/' << rat.Denominator();
 	return stream;
 }
 
-istream& operator>>(istream& stream, Rational& rat)
+std::istream& operator>>(std::istream& stream, Rational& rat)
 {
 	int x, y;
 	stream >> x;

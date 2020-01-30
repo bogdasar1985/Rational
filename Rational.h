@@ -27,13 +27,3 @@ Rational operator-(const Rational& r1, const Rational& r2);
 std::ostream& operator<<(std::ostream& stream, const Rational& rat);
 
 std::istream& operator>>(std::istream& stream, Rational& rat);
-
-
-
-Rational::Rational(/* args */)
-{
-}
-
-Rational::~Rational()
-{
-}
