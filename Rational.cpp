@@ -1,65 +1,55 @@
-﻿#include "pch.h"
-#include <iostream>
-#include <algorithm>
-#include <exception>
+﻿#include "Rational.h"
 using namespace std;
 
-class Rational 
+Rational::Rational()
 {
-public:
-	Rational()
-	{
-		numenator = 0;
-		denominator = 1;
-	}
-
-	Rational(int num, int denom) //Конструктор должен делать дробь несократимой
-	{
-		try
-		{
-			numenator = num;
-			denominator = denom;
-			int tmp = nod(num, denom);
-			numenator /= tmp;
-			denominator /= tmp;
-			if (denominator < 0)
-			{
-				denominator *= -1;
-				numenator *= -1;
-			}
-			if (denominator == 0)throw exception();
-		}
-		catch(exception& ex)
-		{
-			cout << ex.what() << endl;
-			exit(-1);
-		}
-	}
-
-	int Numerator() const //Возвращает числитель
-	{
-		return numenator;
-	}
-
-	int Denominator() const  //Возвращает знаминатель
-	{
-		return denominator;
-	}
-
-private:
-	int numenator;
-	int denominator;
-	
-	int nod(int a, int b)	//Наибольший общий делитель
-	{
-		int tmp = max(a, b);
-		while((a % tmp != 0) || (b % tmp != 0))
-		{
-			tmp--;
-		}
-		return tmp;
-	}
+	numenator = 0;
+	denominator = 1;
 };
+
+Rational::Rational(int num, int denom) //Конструктор должен делать дробь несократимой
+{
+	try
+	{
+		numenator = num;
+		denominator = denom;
+		int tmp = nod(num, denom);
+		numenator /= tmp;
+		denominator /= tmp;
+		if (denominator < 0)
+		{
+			denominator *= -1;
+			numenator *= -1;
+		}
+		if (denominator == 0)throw exception();
+	}
+	catch(exception& ex)
+	{
+		cout << ex.what() << endl;
+		exit(-1);
+	}
+}
+
+int Rational::Numerator() const //Возвращает числитель
+{
+	return numenator;
+}
+
+int Rational::Denominator() const  //Возвращает знаминатель
+{
+	return denominator;
+}
+
+int Rational::nod(int a, int b)	//Наибольший общий делитель
+{
+	int tmp = max(a, b);
+	while((a % tmp != 0) || (b % tmp != 0))
+	{
+		tmp--;
+	}
+	return tmp;
+}
+
 
 bool operator==(const Rational& r1, const Rational& r2)
 {
@@ -151,11 +141,5 @@ istream& operator>>(istream& stream, Rational& rat)
 	stream >> y;
 	rat = Rational(x, y);
 	return stream;
-}
+};
 
-int main()
-{
-	setlocale(LC_ALL, "rus");
-	
-	return 0;
-}
