@@ -33,3 +33,6 @@
 
 # IDE Folders
 *.vscode
+
+# CMake Folders
+build
