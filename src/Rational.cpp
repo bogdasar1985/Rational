@@ -18,6 +18,8 @@ Rational::Rational(int num, int denom) //Конструктор должен д�
 	}
 }
 
+Rational::Rational(std::pair<int, int> fract) : fraction(fract){};
+
 int Rational::nod(std::pair<int, int> fract)	//Наибольший общий делитель
 {
 	int tmp = std::max(fract.first, fract.second);
@@ -32,8 +34,6 @@ std::pair<int, int> Rational::get()
 {
 	return fraction;
 }
-
-
 
 
 /**
