@@ -13,7 +13,7 @@ Rational::Rational(int num, int denom) //Конструктор должен д�
 	}
 	catch(std::exception& ex)
 	{
-		std::cout << ex.what() << std::endl;
+		std::cerr << ex.what() << std::endl;
 		exit(-1);
 	}
 }
