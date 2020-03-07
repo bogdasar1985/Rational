@@ -1,25 +1,15 @@
 ﻿#include "Rational.h"
-Rational::Rational()
-{
-	numenator = 0;
-	denominator = 1;
-};
-
 Rational::Rational(int num, int denom) //Конструктор должен делать дробь несократимой
 {
 	try
 	{
-		numenator = num;
-		denominator = denom;
-		int tmp = nod(num, denom);
-		numenator /= tmp;
-		denominator /= tmp;
-		if (denominator < 0)
-		{
-			denominator *= -1;
-			numenator *= -1;
-		}
-		if (denominator == 0)throw std::exception();
+		fraction = {num, denom};
+		int tmp = nod({num, denom});
+		
+		fraction.first /= tmp;
+		fraction.second /= tmp;
+
+		if (fraction.second == 0)throw std::exception();
 	}
 	catch(std::exception& ex)
 	{
@@ -28,27 +18,25 @@ Rational::Rational(int num, int denom) //Конструктор должен д�
 	}
 }
 
-int Rational::Numerator() const //Возвращает числитель
+int Rational::nod(std::pair<int, int> fract)	//Наибольший общий делитель
 {
-	return numenator;
-}
-
-int Rational::Denominator() const  //Возвращает знаминатель
-{
-	return denominator;
-}
-
-int Rational::nod(int a, int b)	//Наибольший общий делитель
-{
-	int tmp = std::max(a, b);
-	while((a % tmp != 0) || (b % tmp != 0))
+	int tmp = std::max(fract.first, fract.second);
+	while((fract.first % tmp != 0) || (fract.second % tmp != 0))
 	{
 		tmp--;
 	}
 	return tmp;
 }
 
+std::pair<int, int> Rational::get()
+{
+	return fraction;
+}
 
+
+
+
+/**
 bool operator==(const Rational& r1, const Rational& r2)
 {
 	if ((r1.Denominator() == r2.Denominator()) && (r1.Numerator() == r2.Numerator()))
@@ -140,4 +128,5 @@ std::istream& operator>>(std::istream& stream, Rational& rat)
 	rat = Rational(x, y);
 	return stream;
 };
+*/
 
