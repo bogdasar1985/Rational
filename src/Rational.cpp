@@ -109,10 +109,10 @@ Rational operator-(const Rational& r1, const Rational& r2)
 	Rational rat(num1 - num2, denom1);
 	return rat;
 }
-
+*/
 std::ostream& operator<<(std::ostream& stream, const Rational& rat)
 {
-	stream << rat.Numerator() << '/' << rat.Denominator();
+	stream << rat.get.first << '/' << rat.get.second;
 	return stream;
 }
 
@@ -125,5 +125,4 @@ std::istream& operator>>(std::istream& stream, Rational& rat)
 	rat = Rational(x, y);
 	return stream;
 };
-*/
 
