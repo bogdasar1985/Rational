@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include <exception>
+#include <sstream>
 class Rational
 {
 private:
@@ -11,7 +12,7 @@ private:
 public:
     Rational(int num, int denom);   //Constructor with numerator and denominator.
     Rational(std::pair<int, int> fract);    //Constructor with std::pair, consist of numerator and denominator.
-    std::pair<int, int> get();  //Return std::pair<int, int> with numerator and denominator.
+    std::pair<int, int> get() const;  //Return std::pair<int, int> with numerator and denominator.
 };
 
 bool operator==(const Rational& r1, const Rational& r2);

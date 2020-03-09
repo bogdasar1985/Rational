@@ -14,7 +14,7 @@ Rational::Rational(int num, int denom) //Конструктор должен д�
 		std::cerr << ex.what() << std::endl;
 		exit(-1);
 	}
-}
+};
 
 Rational::Rational(std::pair<int, int> fract) : fraction(fract){};
 
@@ -26,16 +26,16 @@ int Rational::nod(std::pair<int, int> fract)	//Наибольший общий �
 		tmp--;
 	}
 	return tmp;
-}
+};
 
-std::pair<int, int> Rational::get()
+std::pair<int, int> Rational::get() const
 {
 	return fraction;
-}
+};
 
 bool operator==(const Rational& r1, const Rational& r2)
 {
-	if (r1.get == r2.get)
+	if (r1.get() == r2.get())
 	{
 		return true;
 	}
@@ -43,20 +43,20 @@ bool operator==(const Rational& r1, const Rational& r2)
 	{
 		return false;
 	}
-}
+};
 
 Rational operator*(const Rational& r1, const Rational& r2)
 {
-	Rational ret((r1.get.first * r2.get.first), (r1.get.second * r2.get.second));
+	Rational ret((r1.get().first * r2.get().first), (r1.get().second * r2.get().second));
 	return ret;
-}
+};
 
 Rational operator/(const Rational& r1, const Rational& r2)
 {
 	try 
 	{
-		if (r2.get.second == 0)throw std::exception();
-		Rational ret(r1.get.first * r2.get.second, r1.get.second * r2.get.first);
+		if (r2.get().second == 0)throw std::exception();
+		Rational ret(r1.get().first * r2.get().second, r1.get().second * r2.get().first);
 		return ret;
 	}
 	catch(std::exception& ex)
@@ -65,7 +65,7 @@ Rational operator/(const Rational& r1, const Rational& r2)
 		exit(-1);
 	}
 	
-}
+};
 
 /**
 Rational operator+(const Rational& r1, const Rational& r2)
@@ -112,7 +112,7 @@ Rational operator-(const Rational& r1, const Rational& r2)
 */
 std::ostream& operator<<(std::ostream& stream, const Rational& rat)
 {
-	stream << rat.get.first << '/' << rat.get.second;
+	stream << rat.get().first << '/' << rat.get().second;
 	return stream;
 }
 
