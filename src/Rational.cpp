@@ -47,7 +47,7 @@ bool operator==(const Rational& r1, const Rational& r2)
 
 Rational operator*(const Rational& r1, const Rational& r2)
 {
-	Rational ret((r1.get.first*r2.get.first), (r1.get.second*r2.get.second));
+	Rational ret((r1.get.first * r2.get.first), (r1.get.second * r2.get.second));
 	return ret;
 }
 
