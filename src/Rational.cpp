@@ -5,10 +5,8 @@ Rational::Rational(int num, int denom) //Конструктор должен д�
 	{
 		fraction = {num, denom};
 		int tmp = nod({num, denom});
-		
 		fraction.first /= tmp;
 		fraction.second /= tmp;
-
 		if (fraction.second == 0)throw std::exception();
 	}
 	catch(std::exception& ex)
@@ -35,11 +33,9 @@ std::pair<int, int> Rational::get()
 	return fraction;
 }
 
-
-/**
 bool operator==(const Rational& r1, const Rational& r2)
 {
-	if ((r1.Denominator() == r2.Denominator()) && (r1.Numerator() == r2.Numerator()))
+	if (r1.get == r2.get)
 	{
 		return true;
 	}
@@ -51,7 +47,7 @@ bool operator==(const Rational& r1, const Rational& r2)
 
 Rational operator*(const Rational& r1, const Rational& r2)
 {
-	Rational ret(r1.Numerator()*r2.Numerator(), r1.Denominator()*r2.Denominator());
+	Rational ret((r1.get.first*r2.get.first), (r1.get.second*r2.get.second));
 	return ret;
 }
 
@@ -59,8 +55,8 @@ Rational operator/(const Rational& r1, const Rational& r2)
 {
 	try 
 	{
-		if (r2.Numerator() == 0)throw std::exception();
-		Rational ret(r1.Numerator() * r2.Denominator(), r1.Denominator() * r2.Numerator());
+		if (r2.get.second == 0)throw std::exception();
+		Rational ret(r1.get.first * r2.get.second, r1.get.second * r2.get.first);
 		return ret;
 	}
 	catch(std::exception& ex)
@@ -71,6 +67,7 @@ Rational operator/(const Rational& r1, const Rational& r2)
 	
 }
 
+/**
 Rational operator+(const Rational& r1, const Rational& r2)
 {
 	int num1 = r1.Numerator();
